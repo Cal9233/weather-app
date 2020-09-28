@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 const url = {
   key: "83f6d29e59d1ed5b257089f954abf8a1",
-  base: "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=",
+  base: "http://api.openweathermap.org/data/2.5/",
 };
 
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
-  const search = (evt) => {
-    if (evt.key === "Enter") {
-      fetch(`${url.base}weather?q=${query}&units=metric&APPID=${url.key}`)
-        .then((res) => res.json)
-        .then((result) => setWeather(result), setQuery(""));
+  const search = (e) => {
+    if (e.key === "Enter") {
+      axios
+        .get(`${url.base}weather?q=${query}&units=metric&APPID=${url.key}`)
+        .then((res) => {
+          console.log(res);
+          setWeather(res.data);
+          setQuery("");
+        })
+        .catch((e) => console.log(e));
     }
   };
 
@@ -40,6 +47,7 @@ function App() {
       "Saturday",
       "Sunday",
     ];
+
     let day = days[d.getDay()];
     let month = months[d.getMonth()];
     let date = d.getDate();
@@ -49,7 +57,15 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div
+      className={
+        typeof weather.main != "undefined"
+          ? weather.main.temp > 85
+            ? "App .Sunny"
+            : "App .Cleary"
+          : "App .Snowy"
+      }
+    >
       <main>
         <div className="search-box">
           <input
@@ -75,7 +91,7 @@ function App() {
             </div>
           </div>
         ) : (
-          ""
+          " "
         )}
       </main>
     </div>

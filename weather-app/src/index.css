@@ -12,11 +12,31 @@ body {
   background-image: url("./images/Cleary.jpg");
   background-size: cover;
   background-position: bottom;
-  transition: 0.4 ease-out;
+  transition: 0.4s ease-out;
 }
 
-.App.sunny {
+.App .Sunny {
   background-image: url("./images/Sunny.jpg");
+}
+
+.App .Snowy {
+  background-image: url("./images/Snowy.jpg");
+}
+
+.App .Cloudy {
+  background-image: url("./images/Cloudy.jpg");
+}
+
+.App .Windy {
+  background-image: url("./images/Rainy.jpg");
+}
+
+.App .Cleary {
+  background-image: url("./images/Cleary.jpg");
+}
+
+.App .Rainy {
+  background-image: url("./images/Rainy.jpg");
 }
 
 main {
