@@ -60,10 +60,10 @@ function App() {
     <div
       className={
         typeof weather.main != "undefined"
-          ? weather.main.temp > 85
-            ? "App .Sunny"
-            : "App .Cleary"
-          : "App .Snowy"
+          ? weather.main.temp > 28
+            ? "App Sunny"
+            : "App Cloudy"
+          : "App Windy"
       }
     >
       <main>
@@ -86,7 +86,7 @@ function App() {
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
             <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°F</div>
+              <div className="temp">{Math.round(weather.main.temp)}°C</div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
           </div>
